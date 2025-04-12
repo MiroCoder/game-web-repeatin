@@ -19,6 +19,19 @@ Bootstrap (optional)
 
 Stripe or another payment gateway for game purchases
 
+Here is what the application looks like:
+
+![Homepage Screenshot](screenshots/home.png)
+
+Games in the store:
+![Games Screenshot](screenshots/games.png)
+
+Profile:
+![Profile Screenshot](screenshots/profile.png)
+
+Admin:
+![Admin Screenshot](screenshots/admin.png)
+
 Getting Started:
 Step 1: Clone the repository
 First, clone the repository to your local machine. Open a terminal or PowerShell window, and run:
