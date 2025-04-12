@@ -21,8 +21,6 @@ Stripe or another payment gateway for game purchases
 
 Here is what the application looks like:
 
-![Homepage Screenshot](screenshots/home.png)
-
 Games in the store:
 ![Games Screenshot](screenshots/games.png)
 
