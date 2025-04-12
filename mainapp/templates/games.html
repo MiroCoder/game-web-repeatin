@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Games in the Store</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/games.css' %}">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{%url 'home' %}">Home</a></li>
+                <li><a href="{%url 'games' %}">Games</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{%url 'profile' %}">Profile</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Sign in</a></li>
+                <li><a href="{% url 'signup' %}">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+     <div class="container">
+        <h1>Available Games</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Price</th>
+                    <th>Release Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in games %}
+                <tr>
+                    <td>
+                        {% if game.image %}
+                            <img src="{{ game.image.url }}" alt="{{ game.name }}" width="100">
+                        {% else %}
+                            <p>No image</p>
+                        {% endif %}
+                    </td>
+                    <td>{{ game.name }}</td>
+                    <td>{{ game.genre }}</td>
+                    <td>${{ game.regular_price }}</td>
+                    <td>{{ game.release_date }}</td>
+                    <td>
+                        {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'buy_game' game.id %}">
+                                {% csrf_token %}
+                                <button type="submit">Buy</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}">Login to buy</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy;2025 Web application "Repeatin". All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

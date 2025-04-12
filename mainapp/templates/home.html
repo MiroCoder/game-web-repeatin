@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game web "Repeatin"</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{%url 'home' %}">Home</a></li>
+                <li><a href="{%url 'games' %}">Games</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{%url 'profile' %}">Profile</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Sign in</a></li>
+<!--                <li><a href="{% url 'signup' %}">Sign up</a></li>-->
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+        <section class="character">
+            <h1>The best game web, where you can get any game you want</h1>
+            <p>Let yourself fall in complete virtual world</p>
+        </section>
+
+        <section class="hero">
+        <div class="hero-content">
+            <h1>What Awaits You?</h1>
+            <p>Epic Battles – Face off against powerful foes and prove your skills.</p>
+            <p>Stunning Worlds – Explore breathtaking environments full of mystery and excitement.</p>
+            <p>Customize & Conquer – Build your character, upgrade your arsenal, and dominate the battlefield.</p>
+            <p>Multiplayer Action – Team up with friends or challenge players from around the globe.</p>
+            <a href="{% url 'games' %}" class="btn btn-primary">Play now</a>
+        </div>
+    </section>
+
+        <section class="services">
+            <div class="container">
+                <h2>Your favourite games are on sale now! Go and get!</h2>
+                <div class="service">
+                    <img src="{% static 'img/offer.jpg' %}" alt="promo">
+                    <p></p>
+                    <a href="{% url 'games' %}" class="btn btn-primary">Check</a>
+                </div>
+                </div>
+        </section>
+
+            <footer>
+        <p>&copy;2025 Web application "Repeatin". All rights reserved.</p>
+    </footer>
+
+
+</body>
+</html>

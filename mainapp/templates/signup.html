@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="signup-container">
+        <div class="form-wrapper">
+            <h2>Registration</h2>
+            <form method="post">
+                {% csrf_token %}
+                <label for="id_username">Username:</label>
+                {{ form.username }}
+
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+
+                <label for="id_password1">Password:</label>
+                {{ form.password1 }}
+
+                <label for="id_password2">Confirm Password:</label>
+                {{ form.password2 }}
+
+                <label for="id_full_name">Full Name:</label>
+                {{ form.full_name }}
+
+                <label for="id_birth_date">Date of Birth:</label>
+                {{ form.birth_date }}
+
+                <label for="id_location">Address:</label>
+                {{ form.location }}
+
+                <label for="id_gender">Gender:</label>
+                {{ form.gender }}
+
+                <label for="id_contact_number">Contact Number:</label>
+                {{ form.contact_number }}
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

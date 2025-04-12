@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{%url 'home' %}">Home</a></li>
+                <li><a href="{%url 'games' %}">Games</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{%url 'profile' %}">Profile</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Sign in</a></li>
+                <li><a href="{% url 'signup' %}">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content">
+    <div class="profile-container">
+        <div class="profile-card">
+            <h1>Profile</h1>
+            <p>Hello, {{ user.username }}!</p>
+            <img src="/static/img/{{ user.username }}.jpg" alt="Profile picture">
+            <div class="profile-details">
+                <h2>Additional User Information:</h2>
+                    <ul>
+                        <li><strong>Full Name:</strong> {{ additional_info.full_name }}</li>
+                        <li><strong>Date of Birth:</strong> {{ additional_info.birth_date }}</li>
+                        <li><strong>Gender:</strong> {{ additional_info.gender }}</li>
+                        <li><strong>Address:</strong> {{ additional_info.location }}</li>
+                        <li><strong>Contact Number:</strong> {{ additional_info.contact_number }}</li>
+<!--                        <li><strong>My games:</strong> {{ additional_info.my_games }}</li>-->
+
+                    </ul>
+
+                    <h2>Games in Library:</h2>
+                    <ul>
+                        {% for game in additional_info.games.all %}
+                        <li>
+                            <img src="{{ game.image.url }}" alt="{{ game.name }}" style="width: 100px; height: auto; margin-right: 10px;">
+                            <strong>{{ game.name }}</strong> ({{ game.genre }})<br>
+                            <em>Release Date: {{ game.release_date }}</em><br>
+                            <strong>Company:</strong> {{ game.company }}<br>
+<!--                            <form action="{% url 'delete_game' game.id %}" method="post">-->
+<!--                                {% csrf_token %}-->
+<!--                                <button type="submit">Remove Game</button>-->
+<!--                            </form>-->
+                        </li>
+                        {% empty %}
+                        <li>No games owned yet.</li>
+                        {% endfor %}
+                    </ul>
+
+
+
+            </div>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+            </form>
+
+        </div>
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy;2025 Web application "Repeatin". All rights reserved.</p>
+    </footer>
+
+      <script src="{% static 'js/modal.js' %}"></script>
+</body>
+</html>
